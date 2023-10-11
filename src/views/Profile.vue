@@ -4,7 +4,7 @@
         <v-avatar color="grey" size="150" rounded="0">
             <v-img cover :src="profileDatas.picture"></v-img>
         </v-avatar>
-        <v-list-item class="text-white" :title="profileDatas.nickname" :subtitle="profileDatas.email"></v-list-item>
+        <v-list-item :title="profileDatas.nickname" :subtitle="profileDatas.email"></v-list-item>
     </v-card>
 </template>
 
