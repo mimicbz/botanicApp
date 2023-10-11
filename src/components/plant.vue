@@ -46,15 +46,5 @@
                 favorites: _getLocalStorageFavoritePlants() ? _getLocalStorageFavoritePlants() : []
             }
         },
-        methods: {
-            setFavorite(newId) {
-                if (this.favorites.find(f => f == newId)) {
-                    this.favorites = this.favorites.filter(f => f !== newId);
-                } else {
-                    this.favorites.push(newId);
-                }
-                localStorage['favoritePlants'] = JSON.stringify(this.favorites);
-            }
-        }
     }
 </script>

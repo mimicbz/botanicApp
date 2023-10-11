@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { createAuthGuard } from "@auth0/auth0-vue";
+//import { createAuthGuard } from "@auth0/auth0-vue";
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Search from '../views/Search.vue'
@@ -20,31 +20,31 @@ const router = createRouter({
       path: '/profile',
       name: 'profile',
       component: Profile,
-      beforeEnter: createAuthGuard(app)
+      //beforeEnter: createAuthGuard(app)
     },
     {
       path: '/search',
       name: 'search',
       component: Search,
-      beforeEnter: createAuthGuard(app)
+      //beforeEnter: createAuthGuard(app)
     },
     {
       path: '/plant/:plantId',
       name: 'plant',
       component: Plant,
-      beforeEnter: createAuthGuard(app)
+      //beforeEnter: createAuthGuard(app)
     },
     {
       path: '/favorites',
       name: 'favorites',
       component: Favorites,
-      beforeEnter: createAuthGuard(app)
+      //beforeEnter: createAuthGuard(app)
     },
     {
       path: '/auth',
       name: 'auth',
       component: Auth,
-      beforeEnter: createAuthGuard(app)
+      //beforeEnter: createAuthGuard(app)
     },
   ]
 })

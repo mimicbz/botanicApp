@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import {useMyStore} from '../store/store.js';
+    import {useMyStore} from '@/store/store';
     import {mapState} from 'pinia';
 
     export default {

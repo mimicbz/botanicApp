@@ -15,33 +15,13 @@
 </template>
 
 <script>
-    import {useMyStore} from '@/store/store';
-    import {mapState} from 'pinia';
-    import axios from 'axios';
+    import botanicMixin from "@/_mixins/botanicMixin";
 
     export default {
-        data() {
-            const trefleStore = useMyStore();
-
-            return {
-                setBotanicDatas: trefleStore.setBotanicDatas,
-                favorites: _getLocalStorageFavoritePlants() ? _getLocalStorageFavoritePlants() : []
-            }
-        },
-        computed: {
-            ...mapState(useMyStore, ['botanicDatas'])
-        },
+        mixins: [botanicMixin],
+        
         mounted() {
-            let _vm = this;
-            axios({
-                method: 'GET',
-                url: `https://trefle.io/api/v1/plants?token=vFofOYMiBLQolXay8HkRs0RfnDYNnxtKs3kfzP4lOC4`,
-            }).then(function (response) {
-                _vm.setBotanicDatas(response.data.data);
-            }).catch(function (error) {
-                console.log(error);
-            });
-
+            this.loadBotanicDatas();
         },
     }
 </script>

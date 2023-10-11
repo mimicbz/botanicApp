@@ -18,14 +18,11 @@
 </template>
 
 <script>
-    import {useMyStore} from '@/store/store';
-    import {mapState} from 'pinia';
-    import axios from 'axios';
+    import botanicMixin from "@/_mixins/botanicMixin";
 
     export default {
+        mixins: [botanicMixin],
         data() {
-            const trefleStore = useMyStore();
-
             return {
                 search: '',
                 headers: [
@@ -36,37 +33,10 @@
                     {key: 'bibliography', title: 'Bibliographie'},
                     {key: 'actions', title: 'Actions', sortable: false},
                 ],
-                setBotanicDatas: trefleStore.setBotanicDatas,
-                favorites: _getLocalStorageFavoritePlants() ? _getLocalStorageFavoritePlants() : []
             }
         },
-        computed: {
-            ...mapState(useMyStore, ['botanicDatas'])
-        },
         mounted() {
-            let _vm = this;
-            axios({
-                method: 'GET',
-                url: `https://trefle.io/api/v1/plants?token=vFofOYMiBLQolXay8HkRs0RfnDYNnxtKs3kfzP4lOC4`,
-            }).then(function (response) {
-                _vm.setBotanicDatas(response.data.data);
-            }).catch(function (error) {
-                console.log(error);
-            });
-
+            this.loadBotanicDatas();
         },
-        methods: {
-
-            setFavorite(newId) {
-                if (this.favorites.find(f => f == newId)) {
-                    this.favorites = this.favorites.filter(f => f !== newId);
-                } else {
-                    this.favorites.push(newId);
-                }
-                console.log(this.favorites);
-                localStorage['favoritePlants'] = JSON.stringify(this.favorites);
-            },
-
-        }
     }
 </script>
